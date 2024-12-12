@@ -1,9 +1,37 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useState } from "react";
 import registerLottieData from "../../assets/lottie/register.json";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const [error, setError] = useState({});
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log({ name, email, password });
+
+    setError({});
+
+    let errorMessage = null;
+
+    if (!/[A-Z]/.test(password)) {
+      errorMessage = "Password must contain at least one uppercase letter.";
+    } else if (!/[a-z]/.test(password)) {
+      errorMessage = "Password must contain at least one lowercase letter.";
+    } else if (!/\d/.test(password)) {
+      errorMessage = "Password must contain at least one number.";
+    } else if (password.length < 6) {
+      errorMessage = "Password must be at least 6 characters long.";
+    }
+
+    if (errorMessage) {
+      setError({ ...error, password: errorMessage });
+    }
+  };
   return (
     <div className="md:bg-base-200 flex flex-col md:flex-row-reverse md:gap-6 items-center justify-center min-h-screen">
       <div className="md:w-96 w-48">
@@ -14,7 +42,7 @@ const Register = () => {
           Create an Account
         </h2>
 
-        <form>
+        <form onSubmit={handleRegister}>
           <div className="form-control">
             <label className="label">
               <span className="label-text font-semibold">Full Name</span>
@@ -51,6 +79,11 @@ const Register = () => {
               required
             />
           </div>
+          {error?.password && (
+            <label className="label text-sm text-red-600">
+              {error.password}
+            </label>
+          )}
           <div className="form-control mt-6">
             <button className="w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
               Register
