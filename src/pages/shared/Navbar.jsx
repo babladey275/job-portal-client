@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+
+  const handleSignOut = () => {
+    signOutUser();
+  };
+
   const links = (
     <>
       <li>
@@ -45,18 +52,31 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <Link
-          to={"/register"}
-          className="btn mr-2 btn-outline px-6 py-3 rounded-lg text-indigo-600 border-2 border-indigo-600 shadow-md hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-        >
-          Register
-        </Link>
-        <Link
-          to={"/signin"}
-          className="btn btn-primary bg-indigo-600 px-6 py-3 rounded-lg text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
-        >
-          Sign In
-        </Link>
+        {user && user?.email ? (
+          <>
+            <button
+              onClick={handleSignOut}
+              className="btn btn-primary bg-indigo-600 px-6 py-3 rounded-lg text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+            >
+              Sign Out
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to={"/register"}
+              className="btn mr-2 btn-outline px-6 py-3 rounded-lg text-indigo-600 border-2 border-indigo-600 shadow-md hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+            >
+              Register
+            </Link>
+            <Link
+              to={"/signin"}
+              className="btn btn-primary bg-indigo-600 px-6 py-3 rounded-lg text-white shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+            >
+              Sign In
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

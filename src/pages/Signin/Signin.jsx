@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import signInLottieData from "../../assets/lottie/signIn.json";
 import Lottie from "lottie-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Signin = () => {
+  const { signInUser } = useContext(AuthContext);
+  const [error, setError] = useState({});
+
+  const navigate = useNavigate();
+
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log({ email, password });
+
+    setError({});
+
+    signInUser(email, password)
+      .then((result) => {
+        const user = result?.user;
+        if (user) {
+          navigate("/");
+        }
+      })
+      .catch((err) => {
+        setError({ ...error, login: err.code });
+      });
   };
 
   return (
@@ -46,8 +65,18 @@ const Signin = () => {
               className="input input-bordered"
               required
             />
+            <label className="label">
+              <Link className="label-text-alt link link-hover">
+                Forgot password?
+              </Link>
+            </label>
+            {error.login && (
+              <label className="label text-sm text-red-600">
+                {error.login}
+              </label>
+            )}
           </div>
-          <div className="form-control mt-6">
+          <div className="form-control mt-4">
             <button className="w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
               Login
             </button>
