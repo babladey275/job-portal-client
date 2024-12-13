@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import logo from "../../assets/icons/job-logo.png";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -12,10 +13,7 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <a>Item 1</a>
-      </li>
-      <li>
-        <a>Item 3</a>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
     </>
   );
@@ -46,7 +44,10 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">JobVibe</a>
+        <a className="btn btn-ghost hover:bg-white">
+          <img src={logo} alt="" className="w-12" />
+          <h2 className="text-2xl">JobVibe</h2>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
