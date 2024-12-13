@@ -1,9 +1,11 @@
 import Lottie from "lottie-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import registerLottieData from "../../assets/lottie/register.json";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
   const [error, setError] = useState({});
 
   const handleRegister = (e) => {
@@ -16,6 +18,7 @@ const Register = () => {
 
     setError({});
 
+    //password validation
     let errorMessage = null;
 
     if (!/[A-Z]/.test(password)) {
@@ -31,13 +34,23 @@ const Register = () => {
     if (errorMessage) {
       setError({ ...error, password: errorMessage });
     }
+
+    //authentication
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
+
   return (
     <div className="md:bg-base-200 flex flex-col md:flex-row-reverse md:gap-6 items-center justify-center min-h-screen">
       <div className="md:w-96 w-48">
         <Lottie animationData={registerLottieData}></Lottie>
       </div>
-      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full my-4">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
           Create an Account
         </h2>
