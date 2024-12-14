@@ -3,6 +3,7 @@ import signInLottieData from "../../assets/lottie/signIn.json";
 import Lottie from "lottie-react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import SocialLogin from "../shared/SocialLogin";
 
 const Signin = () => {
   const { signInUser } = useContext(AuthContext);
@@ -38,7 +39,7 @@ const Signin = () => {
       </div>
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full my-4">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
-          Login your account
+          Sign in your account
         </h2>
 
         <form onSubmit={handleSignIn}>
@@ -78,7 +79,7 @@ const Signin = () => {
           </div>
           <div className="form-control mt-4">
             <button className="w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
-              Login
+              Sign in
             </button>
           </div>
         </form>
@@ -91,6 +92,7 @@ const Signin = () => {
             Register
           </Link>
         </p>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import registerLottieData from "../../assets/lottie/register.json";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import SocialLogin from "../shared/SocialLogin";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
@@ -109,6 +110,7 @@ const Register = () => {
             Sign in
           </Link>
         </p>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   );
