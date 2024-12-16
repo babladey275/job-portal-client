@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import signInLottieData from "../../assets/lottie/signIn.json";
 import Lottie from "lottie-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import SocialLogin from "../shared/SocialLogin";
 
@@ -10,6 +10,8 @@ const Signin = () => {
   const [error, setError] = useState({});
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state || "/";
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -24,7 +26,7 @@ const Signin = () => {
       .then((result) => {
         const user = result?.user;
         if (user) {
-          navigate("/");
+          navigate(from);
         }
       })
       .catch((err) => {

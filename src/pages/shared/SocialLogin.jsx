@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const SocialLogin = () => {
   const { signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         if (user) {
-          navigate("/");
+          navigate(location.state || "/");
         }
       })
       .catch((error) => {

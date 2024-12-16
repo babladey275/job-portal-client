@@ -1,8 +1,10 @@
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const HotJobCard = ({ job }) => {
   const {
+    _id,
     title,
     company,
     company_logo,
@@ -31,19 +33,27 @@ const HotJobCard = ({ job }) => {
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="flex gap-2 flex-wrap">
-          {requirements.map((skill) => (
-            <p className="border rounded-md text-center px-2 hover:text-blue-600 hover:bg-gray-100">
+          {requirements.map((skill, idx) => (
+            <p
+              key={idx}
+              className="border rounded-md text-center px-2 hover:text-blue-600 hover:bg-gray-100"
+            >
               {skill}
             </p>
           ))}
         </div>
         <div className="card-actions justify-end items-center mt-4">
           <p>
-            Salary: ${salaryRange.min} - ${salaryRange.max}
+            <span className="font-semibold">Salary:</span>{" "}
+            <span className="text-gray-600">
+              {salaryRange.currency} {salaryRange.min} - {salaryRange.max}
+            </span>
           </p>
-          <button className="btn bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg transition duration-300 ease-in-out rounded-md px-6 py-2">
-            Apply
-          </button>
+          <Link to={`/jobs/${_id}`}>
+            <button className="btn bg-blue-600 text-white hover:bg-blue-700 hover:shadow-lg transition duration-300 ease-in-out rounded-md px-6 py-2">
+              View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
