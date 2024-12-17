@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import {
   FaEnvelope,
   FaMapMarkerAlt,
@@ -105,12 +105,9 @@ const JobDetails = () => {
 
               {/* Apply Button */}
               <div className="mt-6">
-                <a
-                  href={`mailto:${job.hr_email}`}
-                  className="btn btn-primary w-full"
-                >
-                  Apply Now
-                </a>
+                <Link to={`/job-apply/${job._id}`}>
+                  <button className="btn btn-primary w-full">Apply Now</button>
+                </Link>
               </div>
             </div>
           </div>
