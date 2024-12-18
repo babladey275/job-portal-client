@@ -18,6 +18,9 @@ const Navbar = () => {
       <li>
         <NavLink to={"/my-applications"}>My Applications</NavLink>
       </li>
+      <li>
+        <NavLink to={"/add-job"}>Add Job</NavLink>
+      </li>
     </>
   );
   return (
@@ -48,8 +51,8 @@ const Navbar = () => {
           </ul>
         </div>
         <a className="btn btn-ghost hover:bg-white">
-          <img src={logo} alt="" className="w-12" />
-          <h2 className="text-2xl">JobVibe</h2>
+          <img src={logo} alt="" className="w-12 hidden md:block" />
+          <h2 className="text-2xl hidden md:block">JobVibe</h2>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

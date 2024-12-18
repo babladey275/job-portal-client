@@ -63,10 +63,10 @@ const MyApplications = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <h1 className="text-xl md:text-3xl font-semibold text-center py-8">
+      <h1 className="text-2xl md:text-3xl font-semibold text-center py-8">
         My Job Applications
       </h1>
-      <div className="overflow-x-auto">
+      <div className="max-w-6xl mx-auto overflow-x-auto">
         <table className="table">
           {/* head */}
           <thead>
