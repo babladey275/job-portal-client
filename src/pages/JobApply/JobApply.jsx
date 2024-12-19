@@ -40,7 +40,7 @@ const JobApply = () => {
             showConfirmButton: false,
             timer: 2000,
           }).then(() => {
-            navigate("/");
+            navigate("/my-applications");
           });
         }
       });
