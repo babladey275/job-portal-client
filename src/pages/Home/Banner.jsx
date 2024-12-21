@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div className="hero bg-base-200 min-h-96">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="flex-1">
+        <div className="flex-1 hidden md:block">
           <motion.img
             src={team1}
             animate={{ y: [20, 50, 20] }}
@@ -30,7 +30,7 @@ const Banner = () => {
               ease: easeOut,
               repeat: Infinity,
             }}
-            className="text-5xl font-bold"
+            className="text-2xl md:text-5xl font-bold"
           >
             Latest{" "}
             <motion.span
@@ -42,11 +42,12 @@ const Banner = () => {
             For You!
           </motion.h1>
           <p className="py-6">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            Discover exciting job opportunities that match your skills and
+            passions. Our platform connects you with top employers who are
+            looking for talent just like yours. Whether you're searching for
+            your first job or advancing in your career, we provide the resources
+            and support you need to succeed.
           </p>
-          <button className="btn btn-primary">Get Started</button>
         </div>
       </div>
     </div>

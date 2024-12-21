@@ -121,6 +121,18 @@ const AddJob = () => {
               </select>
             </div>
 
+            {/* Company Name */}
+            <div className="form-control">
+              <label className="label">Company Name</label>
+              <input
+                type="text"
+                name="company"
+                className="input input-bordered w-full"
+                placeholder="Company Name"
+                required
+              />
+            </div>
+
             {/* Application Deadline */}
             <div className="form-control">
               <label className="label">Application Deadline</label>
