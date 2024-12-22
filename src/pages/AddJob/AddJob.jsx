@@ -10,17 +10,17 @@ const AddJob = () => {
   const handleAddJob = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    console.log(formData.entries());
+    // console.log(formData.entries());
     const initialData = Object.fromEntries(formData.entries());
-    console.log(initialData);
+    // console.log(initialData);
     const { max, min, currency, ...newJob } = initialData;
-    console.log(newJob);
+    // console.log(newJob);
     newJob.salaryRange = { min, max, currency };
     newJob.requirements = newJob.requirements.split("\n");
     newJob.responsibilities = newJob.responsibilities.split("\n");
-    console.log(newJob);
+    // console.log(newJob);
 
-    fetch("http://localhost:5000/jobs", {
+    fetch("https://job-portal-server-alpha-five.vercel.app/jobs", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -11,12 +11,12 @@ const MyApplications = () => {
   const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
-    // fetch(`http://localhost:5000/job-application?email=${user.email}`)
+    // fetch(`https://job-portal-server-alpha-five.vercel.app/job-application?email=${user.email}`)
     //   .then((res) => res.json())
     //   .then((data) => setJobs(data));
 
     // axios
-    //   .get(`http://localhost:5000/job-application?email=${user.email}`, {
+    //   .get(`https://job-portal-server-alpha-five.vercel.app/job-application?email=${user.email}`, {
     //     withCredentials: true,
     //   })
     //   .then((res) => setJobs(res.data));
@@ -41,9 +41,12 @@ const MyApplications = () => {
         const updatedJobs = jobs.filter((job) => job._id !== id);
         setJobs(updatedJobs);
 
-        fetch(`http://localhost:5000/job-application/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://job-portal-server-alpha-five.vercel.app/job-application/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {

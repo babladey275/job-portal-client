@@ -29,7 +29,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(
+            `https://job-portal-server-alpha-five.vercel.app/jobs/${params.id}`
+          ),
       },
       {
         path: "job-apply/:id",
@@ -71,7 +73,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/job-applications/jobs/${params.job_id}`),
+          fetch(
+            `https://job-portal-server-alpha-five.vercel.app/job-applications/jobs/${params.job_id}`
+          ),
       },
       {
         path: "register",

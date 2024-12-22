@@ -10,13 +10,16 @@ const ViewApplications = () => {
       status: e.target.value,
     };
 
-    fetch(`http://localhost:5000/job-applications/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateData),
-    })
+    fetch(
+      `https://job-portal-server-alpha-five.vercel.app/job-applications/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateData),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
